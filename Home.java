@@ -40,18 +40,26 @@ import java.awt.Font;
 import javax.swing.UIManager;
 
 public class Home extends JFrame implements MouseListener, MouseMotionListener {
-	SubFrame sf;
+	
+	
+	private static Home instance = new Home();
+	  public static Home getInstance() {
+	        return instance;
+	    }
+	
+
+
 	home2 h2;
 	JPanel contentPane;
 	public int readline_num=0;
 	String user_id;
 	String[] user_name =new String[100];
-	 JList list ;
-	 String[] user_id_list;
-	  JScrollPane scrollpane2;
-	  DefaultListModel listModel = new DefaultListModel();
-	  JLabel lblNewLabel_2 ;
-	  JScrollPane scrollPane_1;
+	JList list ;
+	String[] user_id_list;
+	JScrollPane scrollpane2;
+	DefaultListModel listModel = new DefaultListModel();
+	JLabel lblNewLabel_2 ;
+	JScrollPane scrollPane_1;
 	public String get_data;
 	 
 	
@@ -65,27 +73,25 @@ public class Home extends JFrame implements MouseListener, MouseMotionListener {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Home frame = new Home();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+	//	EventQueue.invokeLater(new Runnable() {
+			//public void run() {
+			//	try {
+					//Home frame = new Home();
+					//frame.setVisible(true);
+			//	} catch (Exception e) {
+				//	e.printStackTrace();
+		//	//	}
+		//	}
+	//	});
+	//}
 
 	
-	public Home(int a) {
-		
-	}
+	
 	/**
 	 * Create the frame.
 	 */
-	public Home() {
+	private Home() {
 		setFont(UIManager.getFont("List.font"));
 		//데이터베이스에서 리스트 숫자 받아와서 숫자만큼 label 생성 label 위치도 조정이되z야되고 
 	//	readdatabase3();
@@ -121,7 +127,11 @@ public class Home extends JFrame implements MouseListener, MouseMotionListener {
 		
 		lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setBounds(123, 36, 110, 34);
-		lblNewLabel_2.addMouseListener(this);	//마우스 이벤트
+		//lblNewLabel_2.addMouseListener(this);	//마우스 이벤트
+		
+		
+		 
+		  
 		lblNewLabel_2.addMouseMotionListener(this); //마우스 이벤트
 		panel_right.add(lblNewLabel_2);
 		
@@ -136,7 +146,7 @@ public class Home extends JFrame implements MouseListener, MouseMotionListener {
 
 		
 		
-		
+		get_data="바보";
 		
 		
 		
@@ -222,14 +232,17 @@ public class Home extends JFrame implements MouseListener, MouseMotionListener {
 				System.out.println("fff");
 				try {
 					InetAddress ia =InetAddress.getLocalHost();
+					
 					String ip_str = ia.toString();
 					String ip= ip_str.substring(ip_str.indexOf("/")+1);
-					
+					System.out.println(ip);
 					String name_database=(String) list.getSelectedValue();
-					getname(name_database);
-				
+					get_data=name_database;
+					System.out.println("입력성공 " +name_database + get_data);
+					
+				//	System.out.println("개똥같은" + setname());
 				//	System.out.println(name_database+"좋아");
-					new home2(name_database,ip,6077);
+					new home2(name_database,"192.168.25.7",6077);
 					
 					
 				}
@@ -391,7 +404,7 @@ public class Home extends JFrame implements MouseListener, MouseMotionListener {
 		
 		  public void getname(String getdata) {
 				get_data=getdata;
-				System.out.println(get_data +"aaa");
+				System.out.println(get_data);
 
 				
 			}
@@ -401,50 +414,10 @@ public class Home extends JFrame implements MouseListener, MouseMotionListener {
 			return get_data;
 			  
 		  }
+		
+		  
 		}
 		
 		
 		
-		
-class SubFrame extends JFrame implements ActionListener{
 
-    public SubFrame(){
-        super("나는 자식");
-        setSize(100,100);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JButton bt = new JButton("닫기");
-        add(bt);
-        bt.addActionListener(this);
-        setLocation(200, 0);
-        setVisible(true);
-    }
-    
-  
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        dispose();
-    }
-    
-    
-  
-    
-    
-}
-class test_Frame2 extends JDialog{
-    JLabel jlb = new JLabel("");
-    public test_Frame2(String str){
-            getContentPane().add(jlb);
-           
-            jlb.setText(str.toString());
-           
-            this.setSize(200,100);
-            this.setModal(true);
-            this.setVisible(true);
-           
-    }
-    
-    
-}
-    
