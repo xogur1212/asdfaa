@@ -15,7 +15,7 @@ public class ServerSocketThread extends Thread{
 	PrintWriter out;
 	String name;
 	String threadName;
-	Home h2;
+	
 	public ServerSocketThread(Server server,Socket socket) {
 		this.server=server;
 		this.socket=socket;
@@ -33,25 +33,33 @@ public class ServerSocketThread extends Thread{
 	@Override
 	public void run() {
 		try {
+			System.out.println("여기가 더빨라");
+			//Thread.sleep(3000);
+			
 			in= new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			
 			//true autoflash 설정
 			out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
 			
 
-			//sendMessage("대화자 이름을 넣으세요");
+			//sendMessage("대화자 이름을 넣으세요")
 			//name=in.readLine();
-			h2 =new Home();
-			name=h2.setname();
+			
+			
+			//name=Home.getInstance().setname();
+			//System.out.println(Home.getInstance().setname());
 			//name="a";
-			server.broadCasting("[" + name+"]님이 입장하셨습니다.");
+		//	server.broadCasting("[" + name+"]님이 입장하셨습니다.");
 			
 			while(true) {
 				String str_in =in.readLine();
+				
 				InetAddress i=socket.getInetAddress();
 				
+				
+				
 				WDB2 db=new WDB2(i.toString(),name,str_in); //객체 생성하면서 wdb 클래스 동작
-						
+				server.broadCasting("[" + name+"]님이 입장하셨습니다.");
 			server.broadCasting("[" + name + "] "+str_in);
 				
 			}

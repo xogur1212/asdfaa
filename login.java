@@ -14,12 +14,14 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
 
+
 public class login extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JTextField id;
 	private JTextField pw;
-	Home h1;
+	public Home h1;
+	
 
 	/**
 	 * Launch the application.
@@ -72,8 +74,11 @@ public class login extends JFrame implements ActionListener{
 	}
 
 		public void actionPerformed(ActionEvent e) {
-			h1=new Home();
+		//	h1=new Home();
+			Home h1=Home.getInstance();
 		}
+		
+		
 	
 	
 }

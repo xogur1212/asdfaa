@@ -45,7 +45,7 @@ public class home2 extends JFrame implements ActionListener, Runnable {
 	String[] chatting_id = new String[50]; //데이터 집어넣는공간
 	String[] chatting_text=new String[50];
 	//JScrollPane scrollPane = new JScrollPane(textArea);
-	
+	String datadata;
 
 	/**
 	 * Launch the application.
@@ -67,7 +67,7 @@ public class home2 extends JFrame implements ActionListener, Runnable {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+		datadata=name_database;
 		
 	
 	
@@ -102,7 +102,7 @@ public class home2 extends JFrame implements ActionListener, Runnable {
 	        
 	        initNet(ip, port);
 			System.out.println("ip = " + ip);
-		
+			System.out.println(name_database +"바보");
 		
 	}
 	private void initNet(String ip, int port) {
@@ -192,6 +192,9 @@ public class home2 extends JFrame implements ActionListener, Runnable {
 			
 	    }
 	
+	public String setData(){
+		return datadata;
+	}
 	
 	@Override
 	public void run() {

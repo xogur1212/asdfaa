@@ -57,12 +57,16 @@ public class Server {
 			
 
 				// accept 클라이언트로부터 연결 기다림
-
+				System.out.println("대기중");
+				//
 				Socket socket = serverSocket.accept();
-				//accept 한후에 리스트에 쓰레드 저장
+				
+				
+				//accept 한후에 리스트에 쓰레드 저장]
 				ServerSocketThread thread =new ServerSocketThread(this,socket);
 				addClient(thread);
 				thread.start();
+				System.out.println("연결성공" + Home.getInstance().get_data);
 
 
 		
@@ -114,6 +118,7 @@ public class Server {
 		for(int i=0; i<list.size();i++) {
 			ServerSocketThread thread =(ServerSocketThread)list.get(i);
 			thread.sendMessage(str);
+			
 		}
 	}
 
